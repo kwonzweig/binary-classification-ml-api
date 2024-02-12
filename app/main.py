@@ -2,10 +2,18 @@ import pandas as pd
 from fastapi import FastAPI, File, UploadFile, HTTPException
 
 from app.ml_model.model import train_model, predict_model
-from app.models import PredictionRequest, PredictionResponse, PredictionResult, TrainingEvaluationResponse
+from app.models import (
+    PredictionRequest,
+    PredictionResponse,
+    PredictionResult,
+    TrainingEvaluationResponse,
+)
 
-app = FastAPI(title="Binary Classification API", description="A simple API for binary classification tasks",
-              version="1.0")
+app = FastAPI(
+    title="Binary Classification API",
+    description="A simple API for binary classification tasks",
+    version="1.0",
+)
 
 
 @app.post("/train/", response_model=TrainingEvaluationResponse)
@@ -33,7 +41,10 @@ async def predict(request: PredictionRequest):
 
         # Make predictions
         predictions, probabilities = predict_model(data)
-        results = [PredictionResult(label=label, probability=prob) for label, prob in zip(predictions, probabilities)]
+        results = [
+            PredictionResult(label=label, probability=prob)
+            for label, prob in zip(predictions, probabilities)
+        ]
         return PredictionResponse(predictions=results)
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Failed to make predictions: {e}")

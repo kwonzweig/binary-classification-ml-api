@@ -1,6 +1,12 @@
 import pandas as pd
 from joblib import dump, load
-from sklearn.metrics import roc_auc_score, average_precision_score, log_loss, brier_score_loss, accuracy_score
+from sklearn.metrics import (
+    roc_auc_score,
+    average_precision_score,
+    log_loss,
+    brier_score_loss,
+    accuracy_score,
+)
 from sklearn.pipeline import Pipeline
 from xgboost import XGBClassifier
 from sklearn.compose import ColumnTransformer
@@ -17,26 +23,34 @@ class BinaryClassifierModel:
         self.input_features = input_features
 
         # Define preprocessing for numerical columns
-        numerical_transformer = Pipeline(steps=[
-            ('scaler', StandardScaler())
-        ])
+        numerical_transformer = Pipeline(steps=[("scaler", StandardScaler())])
 
         # Define preprocessing for categorical columns
-        categorical_transformer = Pipeline(steps=[
-            ('imputer', SimpleImputer(strategy='constant', fill_value='missing')),
-            ('onehot', OneHotEncoder(handle_unknown='ignore'))
-        ])
+        categorical_transformer = Pipeline(
+            steps=[
+                ("imputer", SimpleImputer(strategy="constant", fill_value="missing")),
+                ("onehot", OneHotEncoder(handle_unknown="ignore")),
+            ]
+        )
 
         # Create the preprocessing pipeline
         self.preprocessor = ColumnTransformer(
             transformers=[
-                ('num', numerical_transformer, numerical_features),
-                ('cat', categorical_transformer, categorical_features)
-            ])
+                ("num", numerical_transformer, numerical_features),
+                ("cat", categorical_transformer, categorical_features),
+            ]
+        )
 
         # Create the full pipeline
-        self.pipeline = Pipeline(steps=[('preprocessor', self.preprocessor),
-                                        ('classifier', XGBClassifier(use_label_encoder=False, eval_metric='logloss'))])
+        self.pipeline = Pipeline(
+            steps=[
+                ("preprocessor", self.preprocessor),
+                (
+                    "classifier",
+                    XGBClassifier(use_label_encoder=False, eval_metric="logloss"),
+                ),
+            ]
+        )
 
     def train_and_evaluate(self, X: pd.DataFrame, y: pd.Series):
         """
@@ -44,7 +58,9 @@ class BinaryClassifierModel:
         """
 
         # Split the data
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        X_train, X_test, y_train, y_test = train_test_split(
+            X, y, test_size=0.2, random_state=42
+        )
 
         # Train the pipeline
         self.pipeline.fit(X_train, y_train)
@@ -59,14 +75,16 @@ class BinaryClassifierModel:
         train_scores = self._calculate_scores(y_train, y_train_pred, y_train_proba)
         test_scores = self._calculate_scores(y_test, y_test_pred, y_test_proba)
 
-        return {'training_scores': train_scores, 'testing_scores': test_scores}
+        return {"training_scores": train_scores, "testing_scores": test_scores}
 
     def predict(self, X: pd.DataFrame):
         """
         Make predictions with the trained pipeline.
         """
         predictions = self.pipeline.predict(X)
-        probabilities = self.pipeline.predict_proba(X)[:, 1]  # Probability of positive class
+        probabilities = self.pipeline.predict_proba(X)[
+            :, 1
+        ]  # Probability of positive class
         return predictions, probabilities
 
     def _calculate_scores(self, y_true, y_pred, y_proba):
@@ -74,11 +92,11 @@ class BinaryClassifierModel:
         Helper method to calculate evaluation metrics.
         """
         scores = {
-            'accuracy': accuracy_score(y_true, y_pred),
-            'roc_auc': roc_auc_score(y_true, y_proba),
-            'pr_auc': average_precision_score(y_true, y_proba),
-            'log_loss': log_loss(y_true, y_proba),
-            'brier_score': brier_score_loss(y_true, y_proba)
+            "accuracy": accuracy_score(y_true, y_pred),
+            "roc_auc": roc_auc_score(y_true, y_proba),
+            "pr_auc": average_precision_score(y_true, y_proba),
+            "log_loss": log_loss(y_true, y_proba),
+            "brier_score": brier_score_loss(y_true, y_proba),
         }
         return scores
 
@@ -101,7 +119,7 @@ def train_model(df: pd.DataFrame):
     evaluation_summary = model.train_and_evaluate(X, y)
 
     # Save the trained pipeline to a file
-    dump(model, 'trained_model.joblib')
+    dump(model, "trained_model.joblib")
 
     return evaluation_summary
 
@@ -112,7 +130,7 @@ def predict_model(X: pd.DataFrame):
     """
     try:
         # Attempt to load the trained model class
-        model = load('trained_model.joblib')
+        model = load("trained_model.joblib")
         pipeline = model.pipeline
     except FileNotFoundError:
         raise Exception("Model not found. Please train the model before prediction.")
@@ -141,6 +159,8 @@ def identify_feature_types(df: pd.DataFrame):
     - numerical_features: List[str] - A list of names of numerical features.
     - categorical_features: List[str] - A list of names of categorical features.
     """
-    numerical_features = df.select_dtypes(include=['int64', 'float64']).columns.tolist()
-    categorical_features = df.select_dtypes(include=['object', 'category']).columns.tolist()
+    numerical_features = df.select_dtypes(include=["int64", "float64"]).columns.tolist()
+    categorical_features = df.select_dtypes(
+        include=["object", "category"]
+    ).columns.tolist()
     return numerical_features, categorical_features
