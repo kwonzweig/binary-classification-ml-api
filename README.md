@@ -4,7 +4,6 @@
 -------------------
 ![Python Tests](https://github.com/kwonzweig/binary-classification-ml-api/actions/workflows/python-app.yml/badge.svg)
 ![Docker Image CI](https://github.com/kwonzweig/binary-classification-ml-api/actions/workflows/docker-image.yml/badge.svg)
-![License](https://img.shields.io/github/license/kwonzweig/binary-classification-ml-api)
 [![codecov](https://codecov.io/gh/kwonzweig/binary-classification-ml-api/graph/badge.svg?token=0MW4NDYV4D)](https://codecov.io/gh/kwonzweig/binary-classification-ml-api)
 ![Python Version](https://img.shields.io/badge/python-3.8-blue.svg)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.109.2-blue)](https://fastapi.tiangolo.com/)
@@ -15,7 +14,7 @@ This project provides a simple API for binary classification tasks using FastAPI
 ## Setup and Installation
 
 ### Requirements
-- Python 3.8+
+- Python 3.10+
 - Docker (optional for containerization)
 
 ### Local Setup
@@ -72,14 +71,6 @@ This project provides a simple API for binary classification tasks using FastAPI
 
 The Bank Marketing dataset is utilized in this project to demonstrate the API's capabilities. This dataset originates from direct marketing campaigns, specifically phone calls made by a Portuguese banking institution. The primary classification objective is to predict whether a client will subscribe to a term deposit, denoted by the variable `y`. The dataset provides a realistic context for testing machine learning models, showcasing how data from direct marketing efforts can be leveraged to inform business decisions.
 
-### Prerequisites
-
-Before running the script, ensure you have the following prerequisites:
-
-1. Python 3.x installed on your system.
-2. Access to a terminal or command prompt.
-3. The Bank Marketing dataset downloaded and prepared according to the script's expectations. You can find details about the dataset used in this script from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/222/bank+marketing).
-
 ### Running the Script
 
    ```
@@ -108,6 +99,3 @@ After running the script successfully, you will see the following output indicat
 
 This project is designed for educational purposes to demonstrate how to build a simple ML API with FastAPI. Contributions are welcome!
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
