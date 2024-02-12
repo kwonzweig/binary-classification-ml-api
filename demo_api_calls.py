@@ -25,11 +25,6 @@ predict_samples = predict_df.sample(n=5, random_state=42)  # Select 5 samples fo
 # API Calls
 BASE_URL = "http://localhost:8000"
 
-# Upload dataset (simulated by sending the file path as part of the request)
-with open("train_dataset.csv", "rb") as file:
-    upload_response = requests.post(f"{BASE_URL}/upload/", files={"file": file})
-print("Upload Response:", upload_response.json())
-
 # Train model
 with open("train_dataset.csv", "rb") as file:
     train_response = requests.post(f"{BASE_URL}/train/", files={"file": file})

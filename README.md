@@ -13,7 +13,7 @@ This project provides a simple API for binary classification tasks using FastAPI
 ### Local Setup
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourgithubusername/binary-classification-api.git
+   git clone https://github.com/kwonzweig/binary-classification-api.git
    cd binary-classification-api
    ```
 
@@ -41,14 +41,6 @@ This project provides a simple API for binary classification tasks using FastAPI
    The API will be accessible at `http://localhost:8000`.
 
 ## API Usage
-
-### Upload Dataset
-- **Endpoint**: `POST /upload/`
-- **Description**: Upload a CSV file for the dataset.
-- **cURL Example**:
-  ```bash
-  curl -X 'POST' 'http://localhost:8000/upload/' -F 'file=@path_to_your_dataset.csv;type=text/csv'
-  ```
 
 ### Train Model
 - **Endpoint**: `POST /train/`
@@ -88,11 +80,6 @@ Before running the script, ensure you have the following prerequisites:
 
 
 After running the script successfully, you will see the following output indicating each step's result:
-
-- **Upload Response**:
-  ```python
-  {'message': 'Successfully uploaded train_dataset.csv'}
-  ```
 
 - **Train Response**:
   ```python

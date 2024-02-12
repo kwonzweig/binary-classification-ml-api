@@ -8,20 +8,6 @@ app = FastAPI(title="Binary Classification API", description="A simple API for b
               version="1.0")
 
 
-@app.post("/upload/", status_code=200)
-async def upload_dataset(file: UploadFile = File(...)):
-    """
-    Upload a dataset for training. Assumes CSV format without a header row.
-    """
-    try:
-        # Read the dataset
-        df = pd.read_csv(file.file)
-        # Here, you would typically save the processed dataset for later training
-        return {"message": f"Successfully uploaded {file.filename}"}
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Failed to read or save file: {e}")
-
-
 @app.post("/train/", response_model=TrainingEvaluationResponse)
 async def train(file: UploadFile = File(...)):
     """
