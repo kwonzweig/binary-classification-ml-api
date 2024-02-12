@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+pydantic
+pandas
+scikit-learn
+xgboost
+ucimlrepo
+requests
+python-multipart
+pytest
+pyarrow
