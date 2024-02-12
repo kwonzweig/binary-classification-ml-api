@@ -90,22 +90,22 @@ Before running the script, ensure you have the following prerequisites:
 After running the script successfully, you will see the following output indicating each step's result:
 
 - **Upload Response**:
-  ```json
+  ```python
   {'message': 'Successfully uploaded train_dataset.csv'}
   ```
 
 - **Train Response**:
-  ```json
+  ```python
   {'training_scores': {'accuracy': 0.9630896837739762, 'roc_auc': 0.9855929562230337, 'pr_auc': 0.9220665310189687, 'log_loss': 0.11033718942637911, 'brier_score': 0.030947935079333938}, 'testing_scores': {'accuracy': 0.904202377661045, 'roc_auc': 0.9278738510885942, 'pr_auc': 0.601454074096591, 'log_loss': 0.20962202748945483, 'brier_score': 0.06515554924358767}}
   ```
 
 - **Predict Request**:
-  ```json
+  ```python
   {'data': [{'features': [30, 'management', 'single', 'tertiary', 'no', 3773, 'yes', 'no', None, 27, 'may', 99, 1, -1, 0, None]}, {'features': [39, 'technician', 'single', None, 'no', 45248, 'yes', 'no', None, 6, 'may', 1623, 1, -1, 0, None]}, {'features': [51, 'admin.', 'single', 'secondary', 'no', 895, 'no', 'no', 'cellular', 23, 'jul', 638, 2, -1, 0, None]}, {'features': [26, 'self-employed', 'single', 'tertiary', 'no', 82, 'yes', 'no', 'cellular', 17, 'jul', 200, 1, -1, 0, None]}, {'features': [21, 'student', 'single', 'secondary', 'no', 2488, 'no', 'no', 'cellular', 12, 'oct', 180, 1, -1, 0, None]}]}
   ```
 
 - **Predict Response**:
-  ```json
+  ```python
   {'predictions': [{'label': 0, 'probability': 0.004984984174370766}, {'label': 1, 'probability': 0.6178786158561707}, {'label': 0, 'probability': 0.26504549384117126}, {'label': 0, 'probability': 0.010345274582505226}, {'label': 1, 'probability': 0.6866607666015625}]}
   ```
 
