@@ -3,7 +3,7 @@
 ![Python Tests](https://github.com/kwonzweig/binary-classification-ml-api/actions/workflows/python-app.yml/badge.svg)
 ![Docker Image CI](https://github.com/kwonzweig/binary-classification-ml-api/actions/workflows/docker-image.yml/badge.svg)
 [![codecov](https://codecov.io/gh/kwonzweig/binary-classification-ml-api/graph/badge.svg?token=0MW4NDYV4D)](https://codecov.io/gh/kwonzweig/binary-classification-ml-api)
-![Python Version](https://img.shields.io/badge/python-3.8-blue.svg)
+![Python Version](https://img.shields.io/badge/python-3.10-blue.svg)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.109.2-blue)](https://fastapi.tiangolo.com/)
 
 ## Introduction
