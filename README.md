@@ -56,7 +56,7 @@ predictions.
 ### Train Model
 
 - **Endpoint**: `POST /train/`
-- **Description**: Train the model using the uploaded dataset.
+- **Description**: Upload dataset and train the model.
 - **cURL Example**:
   ```bash
   curl -X 'POST' 'http://localhost:8000/train/' -F 'file=@path_to_your_dataset.csv;type=text/csv'
